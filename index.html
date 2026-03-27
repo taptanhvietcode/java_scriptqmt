@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <table border="1">
+    <!-- <table border="1">
     <tr>
         <th>Hàng hóa</th>
         <th>Đơn giá</th>
@@ -67,6 +67,95 @@ function tinhTien() {
     let sum = t1 + t2 + t3;
     document.getElementById("sum").innerText = sum;
 }
+</script> -->
+<table border="1">
+    <tr>
+        <th>Hàng hóa</th>
+        <th>Đơn giá</th>
+        <th>Số lượng</th>
+        <th>Thành tiền</th>
+    </tr>
+
+    <tr>
+        <td>iPhone 9</td>
+        <td class="price">700</td>
+        <td><input type="number" class="qty" value="0"></td>
+        <td class="total">0</td>
+    </tr>
+
+    <tr>
+        <td>Samsung</td>
+        <td class="price">400</td>
+        <td><input type="number" class="qty" value="1"></td>
+        <td class="total">400</td>
+    </tr>
+
+    <tr>
+        <td>Nokia</td>
+        <td class="price">100</td>
+        <td><input type="number" class="qty" value="0"></td>
+        <td class="total">0</td>
+    </tr>
+
+    <tr>
+        <td>Sony Xperia</td>
+        <td class="price">450</td>
+        <td><input type="number" class="qty" value="2"></td>
+        <td class="total">900</td>
+    </tr>
+
+    <tr>
+        <td>Motorola</td>
+        <td class="price">180</td>
+        <td><input type="number" class="qty" value="0"></td>
+        <td class="total">0</td>
+    </tr>
+
+    <tr>
+        <td>Oppo</td>
+        <td class="price">600</td>
+        <td><input type="number" class="qty" value="1"></td>
+        <td class="total">600</td>
+    </tr>
+
+    <tr>
+        <td>bPhone</td>
+        <td class="price">90</td>
+        <td><input type="number" class="qty" value="0"></td>
+        <td class="total">0</td>
+    </tr>
+
+    <tr>
+        <td colspan="3"><b>TỔNG</b></td>
+        <td id="sum">1900</td>
+    </tr>
+</table>
+<script>
+function tinhTien() {
+    let prices = document.querySelectorAll(".price");
+    let qtys = document.querySelectorAll(".qty");
+    let totals = document.querySelectorAll(".total");
+
+    let sum = 0;
+
+    for (let i = 0; i < prices.length; i++) {
+        let p = parseInt(prices[i].innerText);
+        let q = parseInt(qtys[i].value) || 0;
+
+        let t = p * q;
+        totals[i].innerText = t;
+
+        sum += t;
+    }
+
+    document.getElementById("sum").innerText = sum;
+}
+
+// Gắn sự kiện cho tất cả input
+let inputs = document.querySelectorAll(".qty");
+inputs.forEach(input => {
+    input.addEventListener("input", tinhTien);
+});
 </script>
 </body>
 </html>
