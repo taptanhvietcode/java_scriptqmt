@@ -68,7 +68,7 @@ function tinhTien() {
     document.getElementById("sum").innerText = sum;
 }
 </script> -->
-<table border="1">
+<!-- <table border="1">
     <tr>
         <th>Hàng hóa</th>
         <th>Đơn giá</th>
@@ -156,6 +156,79 @@ let inputs = document.querySelectorAll(".qty");
 inputs.forEach(input => {
     input.addEventListener("input", tinhTien);
 });
+</script>-->
+<h3>Quản lý người</h3>
+
+ID <input type="text" id="id"><br><br>
+Tên <input type="text" id="name"><br><br>
+Tuổi <input type="text" id="age"><br><br>
+
+<button onclick="them()">Thêm mới</button>
+
+<table border="1" width="100%" id="table">
+    <tr>
+        <th>ID</th>
+        <th>Tên</th>
+        <th>Tuổi</th>
+        <th>Action</th>
+    </tr>
+</table>
+<script>
+let editIndex = -1;
+
+function them() {
+    let id = document.getElementById("id").value;
+    let name = document.getElementById("name").value;
+    let age = document.getElementById("age").value;
+
+    if (id === "" || name === "" || age === "") {
+        alert("Nhập đầy đủ!");
+        return;
+    }
+
+    let table = document.getElementById("table");
+
+    // nếu đang sửa
+    if (editIndex !== -1) {
+        let row = table.rows[editIndex];
+        row.cells[0].innerText = id;
+        row.cells[1].innerText = name;
+        row.cells[2].innerText = age;
+        editIndex = -1;
+        return;
+    }
+
+    // thêm mới
+    let row = table.insertRow(-1);
+
+    row.insertCell(0).innerText = id;
+    row.insertCell(1).innerText = name;
+    row.insertCell(2).innerText = age;
+
+    let action = row.insertCell(3);
+
+    action.innerHTML = `
+        <button onclick="xoa(this)">Delete</button>
+        <button onclick="sua(this)">Edit</button>
+    `;
+}
+
+// xóa
+function xoa(btn) {
+    let row = btn.parentElement.parentElement;
+    row.remove();
+}
+
+// sửa
+function sua(btn) {
+    let row = btn.parentElement.parentElement;
+
+    document.getElementById("id").value = row.cells[0].innerText;
+    document.getElementById("name").value = row.cells[1].innerText;
+    document.getElementById("age").value = row.cells[2].innerText;
+
+    editIndex = row.rowIndex;
+}
 </script>
 </body>
 </html>
