@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1">
+    <tr>
+        <th>Hàng hóa</th>
+        <th>Đơn giá</th>
+        <th>Số lượng</th>
+        <th>Thành tiền</th>
+    </tr>
+
+    <tr>
+        <td>Iphone15pro</td>
+        <td id="price1">7000</td>
+        <td><input type="number" id="qty1" oninput="tinhTien()"></td>
+        <td id="total1"></td>
+    </tr>
+
+    <tr>
+        <td>Samsung s25ultra</td>
+        <td id="price2">4000</td>
+        <td><input type="number" id="qty2" oninput="tinhTien()"></td>
+        <td id="total2"></td>
+    </tr>
+
+    <tr>
+        <td>Nokia ultraMega</td>
+        <td id="price3">3000</td>
+        <td><input type="number" id="qty3" oninput="tinhTien()"></td>
+        <td id="total3"></td>
+    </tr>
+
+    <tr>
+        <td colspan="3">Tổng tiền</td>
+        <td id="sum"></td>
+    </tr>
+</table>
+
+<script>
+function tinhTien() {
+    // lấy số lượng
+    let q1 = document.getElementById("qty1").value || 0;
+    let q2 = document.getElementById("qty2").value || 0;
+    let q3 = document.getElementById("qty3").value || 0;
+
+    // lấy đơn giá
+    let p1 = document.getElementById("price1").innerText;
+    let p2 = document.getElementById("price2").innerText;
+    let p3 = document.getElementById("price3").innerText;
+
+    // tính thành tiền
+    let t1 = q1 * p1;
+    let t2 = q2 * p2;
+    let t3 = q3 * p3;
+
+    // hiển thị
+    document.getElementById("total1").innerText = t1;
+    document.getElementById("total2").innerText = t2;
+    document.getElementById("total3").innerText = t3;
+
+    // tổng tiền
+    let sum = t1 + t2 + t3;
+    document.getElementById("sum").innerText = sum;
+}
+</script>
+</body>
+</html>
